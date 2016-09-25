@@ -14,6 +14,7 @@ typedef struct int_array {
 // function prototypes
 node_t * construct_node(int val);
 node_t * construct_list(int_array_t * values);
+node_t * number_line(int start, int end);
 void print_list(node_t * head);
 int pop(node_t ** head);
 int remove_last(node_t ** head);
@@ -29,6 +30,13 @@ node_t * construct_node(int val){
 	return new_node;
 }
 
+//*** Build values int[] list this...
+//int values[] = {1, 2, 3, 4, 5};
+//int_array_t * val_array = malloc(sizeof(int_array_t));
+//val_array->length = sizeof(values)/sizeof(values[0]);
+//val_array->head = values;
+//node_t * test_list = construct_list(val_array);
+//***
 node_t * construct_list(int_array_t * values) {
 	node_t * head = NULL;
 	
@@ -45,7 +53,25 @@ node_t * construct_list(int_array_t * values) {
 		}
 	}
 	
+	free(values);
+	
 	return head;
+}
+
+node_t * number_line(int start, int end) {
+	int size = (end - start) + 1;
+	int chunk[size];
+	int i = 0;
+	
+	for (i = 0; i < size; i++) {
+		chunk[i] = start + i;
+	}
+	
+	int_array_t * val_array = malloc(sizeof(int_array_t));
+	val_array->length = sizeof(chunk)/sizeof(chunk[0]);
+	val_array->head = chunk;
+	
+	return construct_list(val_array);
 }
 
 void print_list(node_t * head) {
