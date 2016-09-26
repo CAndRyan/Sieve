@@ -1,17 +1,18 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include "sieve-list.h"
-
-void remove_non_primes (node_t ** head);
+#include "sieve-primes.h"
 
 int main(int argc, char * argv[]) {
-	node_t * test_list = number_line(2, 30);
+	int max_val = 166;
+	
+	if (argc > 1) {
+		max_val = atoi(argv[1]);
+	}
+	
+	node_t * test_list = number_line(2, max_val);
+	
+	remove_non_primes(&test_list);
 	
     print_list(test_list);
 	
 	return 0;
-}
-
-void remove_non_primes (node_t ** head) {
-	//
 }
